@@ -81,7 +81,7 @@ class Script(scripts.Script):
                     # 3 - face - skin
                     # 4 - clothes
                     # 5 - others(accessories)
-                    mask_index = 0
+                    mask_index = 4
                     if target == MASK_OPTION_1_HAIR:
                         mask_index = 1
                     if target == MASK_OPTION_2_BODY:
@@ -140,7 +140,7 @@ class Script(scripts.Script):
                         with gr.Column():
                             enabled = gr.Checkbox(
                                 label="Enable",
-                                value=False,
+                                value=True,
                                 elem_id=f"a_person_mask_generator_enable_checkbox",
                             )
 
@@ -155,7 +155,7 @@ class Script(scripts.Script):
                                     MASK_OPTION_3_FACE,
                                     MASK_OPTION_4_CLOTHES,
                                 ],
-                                value=[MASK_OPTION_3_FACE],
+                                value=[MASK_OPTION_4_CLOTHES],
                                 elem_id="a_person_mask_generator_mask_dropdown",
                                 interactive=True,
                             )
@@ -165,18 +165,18 @@ class Script(scripts.Script):
                             preview_button = gr.Button(value="Preview Mask *", elem_id="person_mask_generator_preview_button")
                             gr.HTML("<div style='margin: 8px 0px !important; opacity: 0.75;'>* Not available on 'Inpaint' tab.</div>")
 
-                            inpaint_dilation = gr.Slider(label='Mask dilation, pixels', minimum=0, maximum=64, step=1, value=0,
+                            inpaint_dilation = gr.Slider(label='Mask dilation, pixels!!!', minimum=0, maximum=64, step=1, value=5,
                                                          elem_id="a_person_mask_generator_inpaint_dilation")
 
                             override_inpaint_enabled = gr.Checkbox(
                                 label="Override mask settings",
-                                value=False,
+                                value=True,
                                 elem_id=f"a_person_mask_generator_enable_checkbox",
                             )
 
                             with FormGroup(elem_id="a_person_mask_generator_inpaint_controls", visible=False) as a_person_mask_generator_inpaint_controls:
                                 with FormRow():
-                                    mask_blur = gr.Slider(label='Mask blur', minimum=0, maximum=64, step=1, value=4, elem_id="a_person_mask_generator_mask_blur")
+                                    mask_blur = gr.Slider(label='Mask blur', minimum=0, maximum=64, step=1, value=10, elem_id="a_person_mask_generator_mask_blur")
                                 with FormRow():
                                     inpainting_mask_invert = gr.Radio(label='Mask mode', choices=['Inpaint masked', 'Inpaint not masked'], value='Inpaint masked', type="index",
                                                                       elem_id="a_person_mask_generator_mask_mode")
